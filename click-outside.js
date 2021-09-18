@@ -13,11 +13,21 @@ function handleCardButtonClick(event) {
     modalOuter.classList.add('open');
 }
 
+function closeModal() {
+    modalOuter.classList.remove('open');
+}
+
 cardButtons.forEach((button) => 
     button.addEventListener('click', handleCardButtonClick)
 );
 
 modalOuter.addEventListener('click', function(event) {
     const isOutside = !event.target.closest('.modal-inner');
-    if (isOutside) modalOuter.classList.remove('open');
+    if (isOutside) closeModal();
+});
+
+window.addEventListener('keydown', (event) => {
+    console.log(event.key);
+    if (event.key === 'Escape')   // keycode.info
+        closeModal();
 });
